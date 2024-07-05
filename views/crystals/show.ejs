@@ -1,11 +1,26 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>
+        <%= crystal.name %>
+    </title>
 </head>
+
 <body>
-    <p><%= crystalDescription %></p>
+    <h1>
+        <%= crystal.name %>
+    </h1>
+    <p>
+        <%= crystal.description %>
+    </p>
+    <form action="/crystals/<%= crystal._id %>?_method=DELETE" method="POST">
+        <button type="submit">Delete <%= crystal.name %></button>
+    </form>
+    <a href="/crystals/<%= crystal._id %>/edit">Edit <%= crystal.name %></a>
+    <a href="/crystals">Back to Crystals</a>
 </body>
-</html> -->
+
+</html>

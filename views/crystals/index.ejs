@@ -1,16 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crystal Index</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <h1>All Crystals</h1>
     <ul>
-        <% crystals.forEach(crystal => { %>
-            <a href="/crystals/<%= crystal._id%>"> <li><%= crystal.name %></li> </a>
-        <% }) %>
+        <% crystals.forEach(crystal=> { %>
+            <a href="/crystals/<%= crystal._id%>">
+                <li>
+                    <%= crystal.name %>
+                </li>
+            </a>
+            <% }) %>
     </ul>
-  </body>
+    <a href="/crystals/new">Create New Crystal</a>
+</body>
+
 </html>

@@ -1,20 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Create a Crystal</title>
-  </head>
-  <body>
+</head>
+
+<body>
     <h1>Create Your Own Crystal!</h1>
     <form action="/crystals" method="POST">
-      <label for="name">Name Your Crystal:</label>
-      <input type="text" name="name" id="name" />
-  
-      <label for="description">Describe How Your Crystal Looks:</label>
-      <input type="text" name="description" id="description" />
-  
-      <button type="submit">Add Crystal</button>
+        <label for="name">Name Your Crystal:</label>
+        <input type="text" name="name" id="name" />
+
+        <label for="description">Describe How Your Crystal Looks:</label>
+        <input type="text" name="description" id="description" />
+
+        <button type="submit">Add Crystal</button>
     </form>
-  </body>
+    <a href="/crystals/">Back to Crystals</a>
+</body>
+
 </html>

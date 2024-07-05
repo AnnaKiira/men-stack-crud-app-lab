@@ -3,6 +3,7 @@ require('dotenv').config()
 const express = require('express')
 const morgan = require('morgan')
 const mongoose = require('mongoose')
+const methodOverride = require('method-override')
 
 //Models
 const Crystal = require('./models/crystal.js')
@@ -14,17 +15,12 @@ const app = express()
 app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }))
 app.use(morgan('dev'))
+app.use(methodOverride('_method'))
 
 //Routes
 app.get('/', (req, res) => {
     return res.render('index')
 })
-
-//Tried creating a link to the descriptions of the crystals. Tried solving with Yousef and Rahna but we were unsure of how to solve it. 
-/* app.get('/crystals/:crystalId', async (req, res) => {
-    const crystalDescription = await Crystal.findById(req.params.crystalId)
-    return res.render('crystals/show', { crystals: crystalDescription })
-}) */
 
 //crystals/new
 app.get('/crystals/new', (req, res) => {
@@ -41,6 +37,34 @@ app.post('/crystals', async (req, res) => {
 app.get('/crystals', async (req, res) => {
     const allCrystals = await Crystal.find()
     res.render('crystals/index', { crystals: allCrystals })
+})
+
+//crystals/show
+app.get('/crystals/:crystalId', async (req, res) => {
+    const crystalId = (req.params.crystalId)
+    const foundCrystal = await Crystal.findById(crystalId)
+    return res.render('crystals/show', { crystal: foundCrystal })
+})
+
+//crystals/delete
+app.delete('/crystals/:crystalId', async (req, res) => {
+    const crystalId = req.params.crystalId
+    await Crystal.findByIdAndDelete(crystalId)
+    res.redirect('/crystals')
+})
+
+//crystals/edit
+app.get('/crystals/:crystalId/edit', async (req, res) => {
+    const crystalId = req.params.crystalId
+    const foundCrystal = await Crystal.findById(crystalId);
+    return res.render("crystals/edit", {crystal: foundCrystal })
+})
+
+//crystals/update
+app.put('/crystals/:crystalId', async (req, res) => {
+    const crystalId = req.params.crystalId
+    await Crystal.findByIdAndUpdate(crystalId, req.body)
+    res.redirect(`/crystals/${crystalId}`)
 })
 
 //Server Connections
