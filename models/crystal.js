@@ -1,7 +1,12 @@
 const mongoose = require('mongoose')
 
 const crystalSchema = new mongoose.Schema({
-    name: String,
+    name: {
+        type: String,
+        required: [true, 'Name is required.'],
+        minLength: [5, 'Name should be at least 5 characters.'],
+        unique: true
+    },
     description: String
 })
 

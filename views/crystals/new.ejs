@@ -16,6 +16,10 @@
         <label for="description">Describe How Your Crystal Looks:</label>
         <input type="text" name="description" id="description" />
 
+        <% if (typeof errorMessage !== 'undefined') { %>
+            <p class="error"><%= errorMessage %></p>
+        <% } %>
+
         <button type="submit">Add Crystal</button>
     </form>
     <a href="/crystals/">Back to Crystals</a>
